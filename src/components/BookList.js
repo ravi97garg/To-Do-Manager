@@ -1,6 +1,7 @@
 import React from 'react';
 import books from '../BooksJSON';
 import {BrowserRouter as Router, Link} from 'react-router-dom';
+import './BookList.css';
 
 export default class BookList extends React.Component{
     constructor(){
@@ -9,7 +10,7 @@ export default class BookList extends React.Component{
     }
     render() {
         return (
-            <ul>
+            <ul className='list'>
                 {this.state.books.map((book) => {
                 return (
                     <BookTemplate
@@ -29,7 +30,7 @@ export default class BookList extends React.Component{
 const BookTemplate = (props) => {
     let {title, shortDescription, thumbnailUrl, id} = props;
     return (
-        <div>
+        <div className='book-card clearfix'>
             <img src={thumbnailUrl} alt={'Book image '+id}/>
             <h4>{title}</h4>
             <p>{shortDescription}</p>

@@ -1,0 +1,20 @@
+.list {
+    padding: 70px;
+    box-sizing: border-box;
+}
+
+.book-card {
+    background-color: #dedede;
+    margin-bottom: 50px;
+    padding: 30px;
+}
+
+.book-card > img {
+    float: left;
+}
+
+.clearfix:after, .clearfix:before {
+    content: '';
+    display: block;
+    clear: both;
+}

@@ -21,16 +21,18 @@ class App extends Component {
         return (
             <div>
                 <Header/>
-                <Router>
-                    <Route exact path={"/"}
-                           render={(props) => <Login {...props}
-                                                     loginCallback={this.isAuthenticated}
-                                                     isAuth={this.state.isAuth}
-                           />}
-                    />
-                    <PrivateRoute path={'/book/:id'} component={Book} isAuth={this.state.isAuth}/>
-                    <PrivateRoute path={'/bookList'} component={BookList} isAuth={this.state.isAuth}/>
-                </Router>
+                <div className='home'>
+                    <Router>
+                        <Route exact path={"/"}
+                               render={(props) => <Login {...props}
+                                                         loginCallback={this.isAuthenticated}
+                                                         isAuth={this.state.isAuth}
+                               />}
+                        />
+                        <PrivateRoute path={'/book/:id'} component={Book} isAuth={this.state.isAuth}/>
+                        <PrivateRoute path={'/bookList'} component={BookList} isAuth={this.state.isAuth}/>
+                    </Router>
+                </div>
                 <Footer/>
             </div>
 

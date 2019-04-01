@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import books from '../BooksJSON';
+import './Book.css';
 
 export default class Book extends Component{
     constructor(props) {
@@ -16,18 +17,18 @@ export default class Book extends Component{
             status,
             authors,
             categories
-        } = this.state
+        } = this.state;
         return (
             <div className='bookDetail'>
+                <h3>{title}</h3>
+                <div className='caption'>Published on {publishedDate.$date}</div>
                 <img src={thumbnailUrl} alt='book image'/>
-                <h4>{title}</h4>
-                <div>Published on {publishedDate.$date}</div>
                 <p>{longDescription}</p>
-                <div>ISBN: {isbn}</div>
-                <div>Pages: {pageCount}</div>
-                <div>Authors: {authors}</div>
-                <div>Status: {status}</div>
-                <div>categories: {categories}</div>
+                <div className='detail'><b>ISBN:</b> {isbn}</div>
+                <div className='detail'><b>Pages:</b> {pageCount}</div>
+                <div className='detail'><b>Authors:</b> {authors}</div>
+                <div className='detail'><b>Status:</b> {status}</div>
+                <div className='detail'><b>Categories:</b> {categories}</div>
             </div>
         )
     }

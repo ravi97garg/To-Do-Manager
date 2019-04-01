@@ -43,6 +43,8 @@ class Login extends Component{
         return (
             <div className='login-bg'>
                 <form method='POST' onSubmit={this.handleSubmit}>
+                    <h3 className='form-title'>LOGIN</h3>
+                    <span className='form-caption'>Books are the basis</span>
                     <input type='text'
                            onChange={this.handleChange}
                            value={this.state.username}
@@ -57,6 +59,7 @@ class Login extends Component{
                     />
                     <input type='submit'
                            value='Login'
+                           className='login-btn'
                     />
                 </form>
             </div>

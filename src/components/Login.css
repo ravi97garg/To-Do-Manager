@@ -1,3 +1,47 @@
-.login-bg{
-    background: url("");
+.login-bg > form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #111;
+    border-radius: 3px;
+}
+
+.form-title, .form-caption{
+    display: block;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+}
+
+.form-caption {
+    margin-bottom: 20px;
+}
+
+.login-bg input {
+    box-sizing: border-box;
+    padding: 5px 20px;
+    font-size: 16px;
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+    border: 0;
+    border-radius: 20px;
+}
+
+.login-bg input:focus{
+    outline: none;
+}
+
+.login-bg {
+    padding: 20px 100px;
+    background: url("../bg.jpg");
+    background-size: cover;
+    height: 80vh;
+    background-position: bottom;
+}
+
+.login-btn{
+    color: #ffffff;
+    background-color: green;
+    border: 1px solid darkgreen;
 }
