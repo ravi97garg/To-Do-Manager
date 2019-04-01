@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import './ToDoList.css';
 import AddTask from "./AddTask";
 // rdxhd.rocks
@@ -9,27 +8,27 @@ export default class ToDoList extends React.Component{
         super();
         this.state = {todos: [
                 {
-                    "title": "Important1",
-                    "description": "Lorem Ipsum Dolor sit amet...",
+                    "title": "Cleaning Floors",
+                    "description": "Bring Lizol",
                     "createdBy": "Ravi",
-                    "deadline": "2 April 2019",
-                    "dateCreated": "1 April 2019",
+                    "deadline": "2019-04-02",
+                    "dateCreated": "2019-04-01",
                     "status": 0
                 },
                 {
-                    "title": "Important2",
-                    "description": "Lorem Ipsum Dolor sit amet...",
+                    "title": "Purchasing fruits",
+                    "description": "Mango, Kiwi and Melon",
                     "createdBy": "Ravi",
-                    "deadline": "2 April 2019",
-                    "dateCreated": "1 April 2019",
+                    "deadline": "2019-04-02",
+                    "dateCreated": "2019-04-01",
                     "status": 0
                 },
                 {
-                    "title": "Important3",
-                    "description": "Lorem Ipsum Dolor sit amet...",
+                    "title": "Coding",
+                    "description": "Complete coding assignment",
                     "createdBy": "Ravi",
-                    "deadline": "2 April 2019",
-                    "dateCreated": "1 April 2019",
+                    "deadline": "2019-04-02",
+                    "dateCreated": "2019-04-01",
                     "status": 0
                 },
 
@@ -40,27 +39,27 @@ export default class ToDoList extends React.Component{
         this.setState({
             todos: [...this.state.todos, task]
         })
-    }
+    };
 
     removeTask = (taskIndex) => {
-        console.log('Task indx:',taskIndex);
         let items = this.state.todos;
-        items.splice(taskIndex, 1)
+        items.splice(taskIndex, 1);
         this.setState({
             todos: items
-        }, console.log('hell',this.state.todos));
-    }
+        });
+    };
 
     render() {
-        console.log('after',this.state.todos)
         return (
-            <div>
+            <div className='todo-bg'>
                 <AddTask addTaskCallback={this.addTask}/>
                 <ul className='list'>
                     {this.state.todos.map((todo, index) => {
                     return (
                         <ToDoTemplate
                             title = {todo.title}
+                            description = {todo.description}
+                            deadline = {todo.deadline}
                             id = {index}
                             key = {index}
                             removeTaskCallback={this.removeTask}
@@ -80,11 +79,15 @@ class ToDoTemplate extends React.Component{
         this.state = {
             editStatus: false
         };
-        this.myRef = React.createRef();
+        this.titleRef = React.createRef();
+        this.descrRef = React.createRef();
+        this.dateRef = React.createRef();
     }
 
     toggleEdit=()=>{
-        this.myRef.current.contentEditable = !this.state.editStatus;
+        this.titleRef.current.contentEditable = !this.state.editStatus;
+        this.descrRef.current.contentEditable = !this.state.editStatus;
+        this.dateRef.current.contentEditable = !this.state.editStatus;
         this.setState({
             editStatus: !this.state.editStatus
         });
@@ -93,10 +96,12 @@ class ToDoTemplate extends React.Component{
 
     render(){
         return (
-            <div className='ToDo-card clearfix'>
-                <h4 ref={this.myRef}>{this.props.title}</h4>
-                <button onClick={()=>this.props.removeTaskCallback(this.props.id)}>Mark as done</button>
-                <button onClick={this.toggleEdit}>Edit</button>
+            <div className='todo-card clearfix'>
+                <p ref={this.titleRef}><b>{this.props.title}</b></p>
+                <p ref={this.descrRef}>{this.props.description}</p>
+                <p>Deadline: <span ref={this.dateRef}>{this.props.deadline}</span></p>
+                <button className='todo-btn blue' onClick={()=>this.props.removeTaskCallback(this.props.id)}>Mark as done</button>
+                <button className='todo-btn green' onClick={this.toggleEdit}>{this.state.editStatus?'Save':'Edit'}</button>
             </div>
         )
     }

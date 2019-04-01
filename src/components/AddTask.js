@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './AddTask.css';
 
 export default class AddTask extends Component{
 
@@ -7,7 +8,7 @@ export default class AddTask extends Component{
         this.state = {
             title: '',
             description: '',
-            deadline: (new Date()).toDateString()
+            deadline: (new Date()).toISOString().slice(0,10)
         }
     }
 
@@ -42,7 +43,7 @@ export default class AddTask extends Component{
     render() {
         let {title, description, deadline} = this.state;
         return (
-            <div>
+            <div className='addTaskForm'>
                 <input type='text' name='title' onChange={this.updateHandle} placeholder='Task Title' value={title}/>
                 <input type='text' name='description' onChange={this.updateHandle} placeholder='Task Description' value={description}/>
                 <input type='date' name='deadline' onChange={this.updateHandle} placeholder='Deadline [dd-mm-yyyy]' value={deadline}/>

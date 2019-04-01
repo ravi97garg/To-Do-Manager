@@ -3,19 +3,50 @@
     box-sizing: border-box;
 }
 
-.book-card {
+.todo-bg{
+    background-image: linear-gradient(to bottom, #060e46, dodgerblue);
+    overflow: hidden;
+}
+
+.todo-card {
     background-color: #dedede;
     margin-bottom: 50px;
     padding: 30px;
 }
 
-.book-card > img {
-    float: left;
-    margin-right: 10px;
+.todo-card p, .todo-card span{
+    margin: 0;
+    padding: 10px;
+}
+
+.todo-card p:focus, .todo-card span:focus{
+    outline-color: #060e46;
 }
 
 .clearfix:after, .clearfix:before {
     content: '';
     display: block;
     clear: both;
+}
+
+.todo-btn{
+    padding: 6px 20px;
+    margin: 10px;
+    color: white;
+    border-radius: 20px;
+    border: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.todo-btn:focus{
+    outline: none;
+}
+
+.blue{
+    background-color: blue;
+}
+
+.green {
+    background-color: green;
 }
