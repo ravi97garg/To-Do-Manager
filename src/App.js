@@ -4,8 +4,7 @@ import './App.css';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
-import BookList from "./components/BookList";
-import Book from "./components/Book";
+import ToDoList from "./components/ToDoList";
 
 class App extends Component {
     state = {isAuth: false}
@@ -29,8 +28,7 @@ class App extends Component {
                                                          isAuth={this.state.isAuth}
                                />}
                         />
-                        <PrivateRoute path={'/book/:id'} component={Book} isAuth={this.state.isAuth}/>
-                        <PrivateRoute path={'/bookList'} component={BookList} isAuth={this.state.isAuth}/>
+                        <PrivateRoute path={'/toDoList'} component={ToDoList} isAuth={this.state.isAuth}/>
                     </Router>
                 </div>
                 <Footer/>

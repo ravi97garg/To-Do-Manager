@@ -24,7 +24,7 @@ class Login extends Component{
                 this.setState({
                     isAuth: true
                 }, this.props.loginCallback(true));
-                this.props.history.push('/bookList'); //check this.props
+                this.props.history.push('/todoList'); //check this.props
                 flag = 1;
                 break;
             }
