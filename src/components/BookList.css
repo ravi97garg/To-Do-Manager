@@ -11,6 +11,7 @@
 
 .book-card > img {
     float: left;
+    margin-right: 10px;
 }
 
 .clearfix:after, .clearfix:before {
