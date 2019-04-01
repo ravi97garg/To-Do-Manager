@@ -1,0 +1,24 @@
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 15vmin;
+    pointer-events: none;
+}
+
+header {
+    background-color: #060e46;
+    color: #61dafb;
+}
+header > h1, header > img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

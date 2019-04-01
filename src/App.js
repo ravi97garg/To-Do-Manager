@@ -1,28 +1,52 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import './App.css';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Login from "./components/Login";
+import BookList from "./components/BookList";
+import Book from "./components/Book";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    state = {isAuth: false}
+
+    isAuthenticated = (isAuth) => {
+        console.log('called',isAuth);
+        this.setState({
+            isAuth: isAuth
+        })
+    }
+
+    render(){
+        return (
+            <div>
+                <Header/>
+                <Router>
+                    <Route exact path={"/"}
+                           render={(props) => <Login {...props}
+                                                     loginCallback={this.isAuthenticated}
+                                                     isAuth={this.state.isAuth}
+                           />}
+                    />
+                    <PrivateRoute path={'/book/:id'} component={Book} isAuth={this.state.isAuth}/>
+                    <PrivateRoute path={'/bookList'} component={BookList} isAuth={this.state.isAuth}/>
+                </Router>
+                <Footer/>
+            </div>
+
+        )
+    }
 }
 
 export default App;
+
+const PrivateRoute = ({component: Component, isAuth, ...rest}) => {
+    if (isAuth === true) {
+        return <Route {...rest} render={(props) => <Component {...props}/>}/>
+    } else {
+        console.log("Invalid login");
+        return <Route {...rest} render={(props) => <Redirect {...props} to={'/'}/>
+            // to={{pathname: '/', state: {error: {isError: true, message: 'login first'}}}}/>
+        }/>
+    }
+}
