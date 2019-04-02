@@ -49,7 +49,19 @@ export default class ToDoList extends React.Component{
         });
     };
 
-    render() {
+    updateHandle = (event, id) => {
+        let arr = this.state.todos;
+        let obj = this.state.todos[id];
+        arr.splice(id,1,{...obj, [event.target.name]:event.target.value})
+        this.setState(
+            {
+                todos: arr
+            },
+        )
+    };
+
+
+    render(){
         return (
             <div className='todo-bg'>
                 <AddTask addTaskCallback={this.addTask}/>
@@ -63,6 +75,7 @@ export default class ToDoList extends React.Component{
                             id = {index}
                             key = {index}
                             removeTaskCallback={this.removeTask}
+                            updateCallback={this.updateHandle}
                         />
                         )}
                     )}
@@ -84,22 +97,33 @@ class ToDoTemplate extends React.Component{
         this.dateRef = React.createRef();
     }
 
-    toggleEdit=()=>{
-        this.titleRef.current.contentEditable = !this.state.editStatus;
-        this.descrRef.current.contentEditable = !this.state.editStatus;
-        this.dateRef.current.contentEditable = !this.state.editStatus;
+    toggleEdit = (e) => {
         this.setState({
             editStatus: !this.state.editStatus
-        });
+        })
     }
-
 
     render(){
         return (
             <div className='todo-card clearfix'>
-                <p ref={this.titleRef}><b>{this.props.title}</b></p>
-                <p ref={this.descrRef}>{this.props.description}</p>
-                <p>Deadline: <span ref={this.dateRef}>{this.props.deadline}</span></p>
+                <input type='text'
+                       disabled={!this.state.editStatus}
+                       onChange={(e)=>this.props.updateCallback(e, this.props.id)}
+                       name="title"
+                       value={this.props.title}
+                />
+                <input type='text'
+                       disabled={!this.state.editStatus}
+                       onChange={(e)=>this.props.updateCallback(e, this.props.id)}
+                       name="description"
+                       value={this.props.description}
+                />
+                <p>Deadline: <input type='date'
+                                    disabled={!this.state.editStatus}
+                                    value={this.props.deadline}
+                                    name='deadline'
+                                    onChange={(e)=>this.props.updateCallback(e, this.props.id)}/>
+                </p>
                 <button className='todo-btn blue' onClick={()=>this.props.removeTaskCallback(this.props.id)}>Mark as done</button>
                 <button className='todo-btn green' onClick={this.toggleEdit}>{this.state.editStatus?'Save':'Edit'}</button>
             </div>

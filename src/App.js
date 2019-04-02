@@ -10,7 +10,6 @@ class App extends Component {
     state = {isAuth: false}
 
     isAuthenticated = (isAuth) => {
-        console.log('called',isAuth);
         this.setState({
             isAuth: isAuth
         })
@@ -44,9 +43,7 @@ const PrivateRoute = ({component: Component, isAuth, ...rest}) => {
     if (isAuth === true) {
         return <Route {...rest} render={(props) => <Component {...props}/>}/>
     } else {
-        console.log("Invalid login");
         return <Route {...rest} render={(props) => <Redirect {...props} to={'/'}/>
-            // to={{pathname: '/', state: {error: {isError: true, message: 'login first'}}}}/>
         }/>
     }
 }

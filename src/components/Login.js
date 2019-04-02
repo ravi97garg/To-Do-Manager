@@ -44,7 +44,7 @@ class Login extends Component{
             <div className='login-bg'>
                 <form method='POST' onSubmit={this.handleSubmit}>
                     <h3 className='form-title'>LOGIN</h3>
-                    <span className='form-caption'>Books are the basis</span>
+                    <span className='form-caption'>Time and Tide waits for none</span>
                     <input type='text'
                            onChange={this.handleChange}
                            value={this.state.username}

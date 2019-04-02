@@ -12,14 +12,30 @@
     background-color: #dedede;
     margin-bottom: 50px;
     padding: 30px;
+    border-radius: 5px;
 }
 
-.todo-card p, .todo-card span{
+.todo-card p{
     margin: 0;
-    padding: 10px;
 }
 
-.todo-card p:focus, .todo-card span:focus{
+.todo-card input[type="text"]:first-child{
+    font-weight: bolder;
+}
+
+.todo-card input[type="text"]{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.todo-card input{
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+}
+
+.todo-card input:focus{
     outline-color: #060e46;
 }
 
